@@ -25,7 +25,7 @@ npm install && npm run install:browsers && npm test
 | **Content & Links** | `contentLinks.spec.ts` | Marketing copy; app download link; Play Store / App Store redirect `@api`; Why MultiBank via Company nav |
 | **Negative & Edge** | `negative.spec.ts` | Invalid route; broken nav hrefs; nav HTTP 200 checks; mobile viewport overflow |
 
-**Scope:** Public pages only — no login, trading execution, or fund movement.
+**Scope:** Public pages only. No login, trading execution, or fund movement.
 
 Task 2 written deliverables (QA strategy, test plan, risk matrix, release checklist) are in the [`Task 2/`](Task%202/) folder.
 
@@ -36,8 +36,8 @@ Task 2 written deliverables (QA strategy, test plan, risk matrix, release checkl
 | Decision | Why |
 |----------|-----|
 | **Page Object Model** | Locators and page actions live in `pages/`; specs stay readable |
-| **Externalized test data** | Routes and expected copy in `test-data/` — easy to update without touching tests |
-| **Role & text locators** | `getByRole`, `getByText` — resilient and close to how users see the app |
+| **Externalized test data** | Routes and expected copy in `test-data/`, easy to update without touching tests |
+| **Role & text locators** | `getByRole`, `getByText`, resilient and close to how users see the app |
 | **Scoped sections** | e.g. spot trading scoped to the "Spot market" section, not the whole page |
 | **Small utilities** | `linkChecker.ts` and `marketWidget.ts` for HTTP checks using MultiBank's own APIs |
 | **Cross-browser** | Chromium + Firefox in CI and locally |
@@ -91,9 +91,10 @@ BASE_URL=https://mb.io/en-AE npm test
 
 ## Assumptions
 
+- The assignment URL (`https://trade.mb.io`) redirected to the login page, so tests target the public locale site [`https://mb.io/en-AE`](https://mb.io/en-AE) (found by following the logo link from the assignment landing page)
 - Locale prefix is `/en-AE` (e.g. `/en-AE/explore`, `/en-AE/company`)
 - Spot trading data is validated on the **Explore** page
-- Market data loads asynchronously — `expect` timeout is 10s
+- Market data loads asynchronously (`expect` timeout is 10s)
 - Category tabs are **Hot**, **Gainers**, **Losers** (not "Top Gainers" etc.)
 - `$MBG` opens an external tab to `token.multibankgroup.com`
 - Why MultiBank content is reached via **Company** navigation → `/company`
@@ -102,7 +103,7 @@ BASE_URL=https://mb.io/en-AE npm test
 
 ## Reports & CI
 
-- **Sample report (committed):** Playwright’s built-in HTML report from a full Chromium run (15/15 passed)
+- **Sample report (committed):** Playwright's built-in HTML report from a full Chromium run (15/15 passed)
   ```bash
   npm run show:sample-report
   ```
@@ -110,10 +111,10 @@ BASE_URL=https://mb.io/en-AE npm test
 - **Local report after any run:** `npm run test` → `npm run test:report`
 - **CI:** GitHub Actions runs Chromium + Firefox; HTML report uploaded per browser as an artifact
 
-> Open the sample report with `show:sample-report` — don’t view the raw HTML in GitHub’s file preview (Playwright’s UI needs its report server).
+> Open the sample report with `show:sample-report`. Do not view the raw HTML in GitHub's file preview (Playwright's UI needs its report server).
 
 ---
 
 ## Author
 
-Wasey Saeed — [GitHub](https://github.com/WaseySaeed)
+Wasey Saeed: [GitHub](https://github.com/WaseySaeed)
