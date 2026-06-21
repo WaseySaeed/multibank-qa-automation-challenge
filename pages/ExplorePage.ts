@@ -14,11 +14,11 @@ export class ExplorePage extends BasePage {
     });
   }
 
-  async open(): Promise<void> {
+  async open(){
     await this.goto(routes.explore);
   }
 
-  async expectSpotTradingSectionRendered(): Promise<void> {
+  async expectSpotTradingSectionRendered(){
     await expect(this.page.getByRole('heading', { name: explorePageContent.heading }).first()).toBeVisible();
     await expect(this.spotTradingSection).toBeVisible();
     await expect(this.spotTradingSection.getByRole('heading', { name: explorePageContent.spotMarketHeading })).toBeVisible();
@@ -26,13 +26,13 @@ export class ExplorePage extends BasePage {
     await expect(this.spotTradingSection.getByText(explorePageContent.cryptoPriceListTitle).first()).toBeVisible();
   }
 
-  async expectTradingPairsVisible(): Promise<void> {
+  async expectTradingPairsVisible(){
     for (const asset of explorePageContent.sampleAssets) {
       await expect(this.spotTradingSection.getByText(asset, { exact: true }).first()).toBeVisible();
     }
   }
 
-  async expectTradingPairsGrouped(): Promise<void> {
+  async expectTradingPairsGrouped(){
     for (const tab of explorePageContent.spotTabs) {
       const tabButton = this.spotTradingSection.getByRole('button', { name: tab, exact: true });
       await expect(tabButton).toBeVisible();
@@ -42,15 +42,15 @@ export class ExplorePage extends BasePage {
     }
   }
 
-  async clickSpotTab(tab: string): Promise<void> {
+  async clickSpotTab(tab: string){
     await this.spotTradingSection.getByRole('button', { name: tab, exact: true }).click();
   }
 
-  async expectAssetVisibleInSpotSection(asset: string): Promise<void> {
+  async expectAssetVisibleInSpotSection(asset: string){
     await expect(this.spotTradingSection.getByText(asset, { exact: true }).first()).toBeVisible();
   }
 
-  async expectTradingPairDataFields(): Promise<void> {
+  async expectTradingPairDataFields(){
     await expect(this.spotTradingSection.getByText('BTC', { exact: true }).first()).toBeVisible();
     await expect(this.spotTradingSection.getByText('$').first()).toBeVisible();
     await expect(this.spotTradingSection.getByText('%').first()).toBeVisible();

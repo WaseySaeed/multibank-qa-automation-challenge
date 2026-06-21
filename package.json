@@ -11,6 +11,8 @@
     "test:firefox": "playwright test --project=firefox",
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
+    "test:sample-report": "playwright test --project=chromium --workers=1 && rm -rf docs/sample-test-report && cp -r playwright-report docs/sample-test-report",
+    "show:sample-report": "playwright show-report docs/sample-test-report",
     "install:browsers": "playwright install --with-deps chromium firefox"
   },
   "keywords": ["playwright", "qa", "automation", "multibank"],

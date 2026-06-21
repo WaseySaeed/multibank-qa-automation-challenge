@@ -8,7 +8,7 @@ export class BasePage {
     this.page = page;
   }
 
-  async goto(path: string = routes.home): Promise<void> {
+  async goto(path: string = routes.home){
     await this.page.goto(path, { waitUntil: 'domcontentloaded' });
   }
 }

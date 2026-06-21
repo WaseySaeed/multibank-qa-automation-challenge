@@ -55,7 +55,7 @@ multibank-qa-automation-challenge/
 ├── test-data/                         # Routes, expected content strings
 ├── utils/                             # Link checker, market widget API helper
 ├── Task 2/                            # Written QA deliverables (PDF)
-├── docs/sample-test-report/           # Committed HTML report (evidence)
+├── docs/sample-test-report/           # Playwright built-in HTML report (use npm run show:sample-report)
 ├── playwright.config.ts
 └── package.json
 ```
@@ -102,9 +102,15 @@ BASE_URL=https://mb.io/en-AE npm test
 
 ## Reports & CI
 
-- **Sample report (in repo):** open [`docs/sample-test-report/index.html`](docs/sample-test-report/index.html) in a browser — full Chromium run, all tests passed
-- **Local HTML report:** `playwright-report/index.html` after `npm test` → `npm run test:report`
+- **Sample report (committed):** Playwright’s built-in HTML report from a full Chromium run (14/14 passed)
+  ```bash
+  npm run show:sample-report
+  ```
+  Or after a fresh run: `npm run test:sample-report` then `npm run show:sample-report`
+- **Local report after any run:** `npm run test` → `npm run test:report`
 - **CI:** GitHub Actions runs Chromium + Firefox; HTML report uploaded per browser as an artifact
+
+> Open the sample report with `show:sample-report` — don’t view the raw HTML in GitHub’s file preview (Playwright’s UI needs its report server).
 
 ---
 

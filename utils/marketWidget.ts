@@ -12,7 +12,7 @@ type MarketWidget = {
   items: string[];
 };
 
-export async function expectMarketDataApisOk(request: APIRequestContext): Promise<void> {
+export async function expectMarketDataApisOk(request: APIRequestContext){
   const widgetResponse = await request.get(MARKET_WIDGET_URL, { headers: JSON_HEADERS });
   expect(widgetResponse.status()).toBe(200);
 

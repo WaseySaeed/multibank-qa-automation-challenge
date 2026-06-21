@@ -12,11 +12,11 @@ export class HomePage extends BasePage {
     return this.page.locator('a[href*="mbio.go.link"]').first();
   }
 
-  async open(): Promise<void> {
+  async open(){
     await this.goto(routes.home);
   }
 
-  async expectMarketingContentVisible(): Promise<void> {
+  async expectMarketingContentVisible(){
     await expect(this.page.getByRole('heading', { name: homePageContent.heroHeadings[0] }).first()).toBeVisible();
 
     for (const section of homePageContent.marketingSections) {
@@ -24,7 +24,7 @@ export class HomePage extends BasePage {
     }
   }
 
-  async expectDownloadLink(): Promise<void> {
+  async expectDownloadLink(){
     await expect(this.downloadLink).toBeVisible();
     const href = await this.downloadLink.getAttribute('href');
     expect(href).toContain('mbio.go.link');
