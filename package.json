@@ -1,0 +1,23 @@
+{
+  "name": "multibank-qa-automation-challenge",
+  "version": "1.0.0",
+  "description": "MultiBank QA Automation Coding Challenge - Playwright test suite for trade.mb.io",
+  "scripts": {
+    "test": "playwright test",
+    "test:navigation": "playwright test tests/navigation.spec.ts",
+    "test:content-links": "playwright test tests/contentLinks.spec.ts",
+    "test:negative": "playwright test tests/negative.spec.ts",
+    "test:trading": "playwright test tests/trading.spec.ts",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "install:browsers": "playwright install --with-deps chromium"
+  },
+  "keywords": ["playwright", "qa", "automation", "multibank"],
+  "author": "Wasey Saeed",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.0",
+    "typescript": "^5.8.0"
+  }
+}
