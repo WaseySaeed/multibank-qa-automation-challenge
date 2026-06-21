@@ -19,7 +19,7 @@ test.describe('Navigation & Layout', () => {
 
     for (const item of Object.values(NavigationItem)) {
       await test.step(item, async () => {
-        await page.goto(routes.home);
+        await page.goto(routes.home, { waitUntil: 'domcontentloaded' });
         await navigation.expectNavigationLinksResolve(item);
       });
     }

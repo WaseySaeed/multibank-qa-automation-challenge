@@ -7,7 +7,6 @@ export default defineConfig({
     ['html', { open: 'never' }],
   ],
   use: {
-    ...devices['Desktop Chrome'],
     baseURL: process.env.BASE_URL ?? 'https://mb.io/en-AE',
     viewport: { width: 1440, height: 900 },
     trace: 'on-first-retry',
@@ -16,4 +15,14 @@ export default defineConfig({
   expect: {
     timeout: 10_000,
   },
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+  ],
 });

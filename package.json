@@ -8,9 +8,10 @@
     "test:content-links": "playwright test tests/contentLinks.spec.ts",
     "test:negative": "playwright test tests/negative.spec.ts",
     "test:trading": "playwright test tests/trading.spec.ts",
+    "test:firefox": "playwright test --project=firefox",
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
-    "install:browsers": "playwright install --with-deps chromium"
+    "install:browsers": "playwright install --with-deps chromium firefox"
   },
   "keywords": ["playwright", "qa", "automation", "multibank"],
   "author": "Wasey Saeed",

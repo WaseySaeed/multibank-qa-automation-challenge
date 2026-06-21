@@ -27,7 +27,7 @@ npm install && npm run install:browsers && npm test
 
 **Scope:** Public pages only — no login, trading execution, or fund movement.
 
-Task 2 written deliverables (QA strategy, test plan, risk matrix) are in the [`Task 2/`](Task%202/) folder.
+Task 2 written deliverables (QA strategy, test plan, risk matrix, release checklist) are in the [`Task 2/`](Task%202/) folder.
 
 ---
 
@@ -40,7 +40,8 @@ Task 2 written deliverables (QA strategy, test plan, risk matrix) are in the [`T
 | **Role & text locators** | `getByRole`, `getByText` — resilient and close to how users see the app |
 | **Scoped sections** | e.g. spot trading scoped to the "Spot market" section, not the whole page |
 | **Small utilities** | `linkChecker.ts` and `marketWidget.ts` for HTTP checks using MultiBank's own APIs |
-| **GitHub Actions** | Tests run on every push/PR (Chromium, headless) |
+| **Cross-browser** | Chromium + Firefox in CI and locally |
+| **GitHub Actions** | Matrix runs on every push/PR (Chromium + Firefox) |
 
 ---
 
@@ -54,6 +55,7 @@ multibank-qa-automation-challenge/
 ├── test-data/                         # Routes, expected content strings
 ├── utils/                             # Link checker, market widget API helper
 ├── Task 2/                            # Written QA deliverables (PDF)
+├── docs/sample-test-report/           # Committed HTML report (evidence)
 ├── playwright.config.ts
 └── package.json
 ```
@@ -63,7 +65,8 @@ multibank-qa-automation-challenge/
 ## Run tests
 
 ```bash
-npm test                    # full suite
+npm test                    # full suite (Chromium + Firefox)
+npm run test:firefox        # Firefox only
 npm run test:navigation
 npm run test:trading
 npm run test:content-links
@@ -99,8 +102,9 @@ BASE_URL=https://mb.io/en-AE npm test
 
 ## Reports & CI
 
-- **Local HTML report:** `playwright-report/index.html` → `npm run test:report`
-- **CI:** GitHub Actions runs the full suite on push/PR; HTML report uploaded as an artifact
+- **Sample report (in repo):** open [`docs/sample-test-report/index.html`](docs/sample-test-report/index.html) in a browser — full Chromium run, all tests passed
+- **Local HTML report:** `playwright-report/index.html` after `npm test` → `npm run test:report`
+- **CI:** GitHub Actions runs Chromium + Firefox; HTML report uploaded per browser as an artifact
 
 ---
 

@@ -10,6 +10,5 @@ export class BasePage {
 
   async goto(path: string = routes.home): Promise<void> {
     await this.page.goto(path, { waitUntil: 'domcontentloaded' });
-    await this.page.waitForLoadState('networkidle', { timeout: 20_000 });
   }
 }
