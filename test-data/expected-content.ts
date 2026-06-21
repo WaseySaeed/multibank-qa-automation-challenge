@@ -11,7 +11,6 @@ export const explorePageContent = {
   heading: 'Markets at your fingertips',
   spotMarketHeading: 'Spot market',
   spotMarketDescription: 'cryptocurrency spot market data',
-  cryptoPriceListTitle: "Today's top crypto prices",
   spotTabs: ['Hot', 'Gainers', 'Losers'],
   sampleAssets: ['BTC', 'ETH', 'SOL', 'XRP', 'MBG'],
 } as const;

@@ -22,7 +22,7 @@ npm install && npm run install:browsers && npm test
 |----------------|-----------|-----------|
 | **Navigation & Layout** | `navigation.spec.ts` | Top nav visible; each item navigates to the correct destination (incl. `$MBG` new tab) |
 | **Trading Functionality** | `trading.spec.ts` | Spot section renders; pairs visible; Hot/Gainers/Losers tabs; symbol/price/% fields; API-backed category check |
-| **Content & Links** | `contentLinks.spec.ts` | Marketing copy; app download link; Why MultiBank via Company nav |
+| **Content & Links** | `contentLinks.spec.ts` | Marketing copy; app download link; Play Store / App Store redirect `@api`; Why MultiBank via Company nav |
 | **Negative & Edge** | `negative.spec.ts` | Invalid route; broken nav hrefs; nav HTTP 200 checks; mobile viewport overflow |
 
 **Scope:** Public pages only — no login, trading execution, or fund movement.
@@ -102,7 +102,7 @@ BASE_URL=https://mb.io/en-AE npm test
 
 ## Reports & CI
 
-- **Sample report (committed):** Playwright’s built-in HTML report from a full Chromium run (14/14 passed)
+- **Sample report (committed):** Playwright’s built-in HTML report from a full Chromium run (15/15 passed)
   ```bash
   npm run show:sample-report
   ```

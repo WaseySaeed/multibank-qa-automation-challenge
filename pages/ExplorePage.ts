@@ -23,7 +23,7 @@ export class ExplorePage extends BasePage {
     await expect(this.spotTradingSection).toBeVisible();
     await expect(this.spotTradingSection.getByRole('heading', { name: explorePageContent.spotMarketHeading })).toBeVisible();
     await expect(this.spotTradingSection.getByText(explorePageContent.spotMarketDescription).first()).toBeVisible();
-    await expect(this.spotTradingSection.getByText(explorePageContent.cryptoPriceListTitle).first()).toBeVisible();
+    await expect(this.spotTradingSection.getByRole('button', { name: 'Hot', exact: true })).toBeVisible();
   }
 
   async expectTradingPairsVisible(){
