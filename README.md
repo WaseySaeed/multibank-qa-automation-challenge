@@ -111,7 +111,7 @@ BASE_URL=https://mb.io/en-AE npm test
 - **Local report after any run:** `npm run test` → `npm run test:report`
 - **CI:** GitHub Actions runs Chromium + Firefox; HTML report uploaded per browser as an artifact
 
-> Open the sample report with `show:sample-report`. Do not view the raw HTML in GitHub's file preview (Playwright's UI needs its report server).
+> Open the sample report with `show:sample-report`.
 
 ---
 
