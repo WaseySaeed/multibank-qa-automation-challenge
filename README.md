@@ -1,61 +1,109 @@
 # MultiBank QA Automation Challenge
 
-Playwright + TypeScript automation for [mb.io](https://mb.io/en-AE).
+Playwright + TypeScript test automation for the public [mb.io](https://mb.io/en-AE) marketing and explore experience.
 
-## Quick start
+**Repository:** https://github.com/WaseySaeed/multibank-qa-automation-challenge
+
+---
+
+## Quick start (single command)
 
 ```bash
 npm install && npm run install:browsers && npm test
 ```
 
-## Prerequisites
+**Prerequisites:** Node.js 18+, npm 9+
 
-- Node.js 18+
-- npm 9+
+---
+
+## What this covers (Task 1)
+
+| Challenge area | Spec file | Scenarios |
+|----------------|-----------|-----------|
+| **Navigation & Layout** | `navigation.spec.ts` | Top nav visible; each item navigates to the correct destination (incl. `$MBG` new tab) |
+| **Trading Functionality** | `trading.spec.ts` | Spot section renders; pairs visible; Hot/Gainers/Losers tabs; symbol/price/% fields; API-backed category check |
+| **Content & Links** | `contentLinks.spec.ts` | Marketing copy; app download link; Why MultiBank via Company nav |
+| **Negative & Edge** | `negative.spec.ts` | Invalid route; broken nav hrefs; nav HTTP 200 checks; mobile viewport overflow |
+
+**Scope:** Public pages only — no login, trading execution, or fund movement.
+
+Task 2 written deliverables (QA strategy, test plan, risk matrix) are in the [`Task 2/`](Task%202/) folder.
+
+---
+
+## Framework approach
+
+| Decision | Why |
+|----------|-----|
+| **Page Object Model** | Locators and page actions live in `pages/`; specs stay readable |
+| **Externalized test data** | Routes and expected copy in `test-data/` — easy to update without touching tests |
+| **Role & text locators** | `getByRole`, `getByText` — resilient and close to how users see the app |
+| **Scoped sections** | e.g. spot trading scoped to the "Spot market" section, not the whole page |
+| **Small utilities** | `linkChecker.ts` and `marketWidget.ts` for HTTP checks using MultiBank's own APIs |
+| **GitHub Actions** | Tests run on every push/PR (Chromium, headless) |
+
+---
 
 ## Project structure
 
 ```
-├── pages/           # Page Object Model
-├── tests/           # Spec files by feature area
-├── test-data/       # Routes and expected content
-├── utils/           # API and link helpers
-└── playwright.config.ts
+multibank-qa-automation-challenge/
+├── .github/workflows/playwright.yml   # CI pipeline
+├── pages/                             # Page objects (Home, Explore, Company, Navigation)
+├── tests/                             # Specs grouped by feature area
+├── test-data/                         # Routes, expected content strings
+├── utils/                             # Link checker, market widget API helper
+├── Task 2/                            # Written QA deliverables (PDF)
+├── playwright.config.ts
+└── package.json
 ```
+
+---
 
 ## Run tests
 
 ```bash
-npm test
+npm test                    # full suite
 npm run test:navigation
+npm run test:trading
 npm run test:content-links
 npm run test:negative
-npm run test:trading
-npm run test:headed
-npm run test:report
+npm run test:headed         # watch the browser
+npm run test:report         # open HTML report after a run
 ```
 
-## Environment
+---
 
-| Variable | Default |
-|----------|---------|
-| `BASE_URL` | `https://mb.io/en-AE` |
+## Configuration
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `BASE_URL` | `https://mb.io/en-AE` | Target environment and locale |
 
 ```bash
 BASE_URL=https://mb.io/en-AE npm test
 ```
 
-## Test coverage
+---
 
-| Spec | Area |
-|------|------|
-| `navigation.spec.ts` | Top nav visibility and link destinations |
-| `trading.spec.ts` | Spot market UI, categories, API checks |
-| `contentLinks.spec.ts` | Marketing content, download link, Why MultiBank |
-| `negative.spec.ts` | Invalid routes, nav hrefs, HTTP status, mobile viewport |
+## Assumptions
 
-## Reports
+- Locale prefix is `/en-AE` (e.g. `/en-AE/explore`, `/en-AE/company`)
+- Spot trading data is validated on the **Explore** page
+- Market data loads asynchronously — `expect` timeout is 10s
+- Category tabs are **Hot**, **Gainers**, **Losers** (not "Top Gainers" etc.)
+- `$MBG` opens an external tab to `token.multibankgroup.com`
+- Why MultiBank content is reached via **Company** navigation → `/company`
 
-After a run:
+---
 
-- HTML: `playwright-report/index.html` → `npm run test:report`
+## Reports & CI
+
+- **Local HTML report:** `playwright-report/index.html` → `npm run test:report`
+- **CI:** GitHub Actions runs the full suite on push/PR; HTML report uploaded as an artifact
+
+---
+
+## Author
+
+Wasey Saeed — [GitHub](https://github.com/WaseySaeed)
